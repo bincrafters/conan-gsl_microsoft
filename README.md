@@ -38,7 +38,7 @@ This is a header only library, so nothing needs to be built.
 
     $ conan create bincrafters/stable
 	
-## Add Remote and Associate package with it
+## Add Remote
 
 	$ conan remote add bincrafters "https://api.bintray.com/conan/bincrafters/public-conan"
 
