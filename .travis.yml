@@ -6,7 +6,7 @@ linux: &linux
    services:
      - docker
 
- matrix:
+matrix:
    include:
       - <<: *linux
         env: CONAN_GCC_VERSIONS=7 CONAN_DOCKER_IMAGE=lasote/conangcc7
