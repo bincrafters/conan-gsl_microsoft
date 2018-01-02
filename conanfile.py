@@ -22,8 +22,8 @@ class GslMicrosoftConan(ConanFile):
         os.rename(extracted_dir, self.source_subfolder)
             
     def package(self):
-        include_folder = os.path.join(source_subfolder,"include")
-        self.copy(pattern="LICENSE", src=source_subfolder)
+        include_folder = os.path.join(self.source_subfolder,"include")
+        self.copy(pattern="LICENSE", src=self.source_subfolder)
         self.copy(pattern="*", dst="include", src=include_folder)
 
     def package_id(self):
