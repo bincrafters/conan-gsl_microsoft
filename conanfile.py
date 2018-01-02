@@ -7,8 +7,8 @@ import os
 
 class GslMicrosoftConan(ConanFile):
     name = "gsl_microsoft"
-    version = "20171020"
-    commit_id = "211e195d8f9dd6fa967a5741387fb5eae1ff351b"
+    version = "20180102"
+    commit_id = "9d65e74400976b3509833f49b16d401600c7317d"
     description = "Functions and types that are suggested for use by the C++ Core Guideline"
     url = "https://github.com/bincrafters/conan-gsl_microsoft"
     license = "MIT"
