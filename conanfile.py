@@ -17,10 +17,9 @@ class GslMicrosoftConan(ConanFile):
     
     def source(self):
         source_url = "https://github.com/Microsoft/GSL"
-        self.run("git clone {0}.git".format(source_url))
-        os.rename("GSL", self.source_subfolder)
-        with tools.chdir(self.source_subfolder):
-            self.run("git checkout -f {0}".format(self.commit_id))
+        tools.get("{0}/archive/{1}.zip".format(source_url, self.commit_id))
+        extracted_dir = "GSL-" + self.commit_id
+        os.rename(extracted_dir, self.source_subfolder)
             
     def package(self):
         include_folder = os.path.join("source_subfolder","include")
