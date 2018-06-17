@@ -7,8 +7,7 @@ import os
 
 class GslMicrosoftConan(ConanFile):
     name = "gsl_microsoft"
-    version = "20180102"
-    commit_id = "9d65e74400976b3509833f49b16d401600c7317d"
+    version = "1.0.0"
     description = "Functions and types that are suggested for use by the C++ Core Guideline"
     url = "https://github.com/bincrafters/conan-gsl_microsoft"
     license = "MIT"
@@ -17,12 +16,12 @@ class GslMicrosoftConan(ConanFile):
     
     def source(self):
         source_url = "https://github.com/Microsoft/GSL"
-        tools.get("{0}/archive/{1}.zip".format(source_url, self.commit_id))
-        extracted_dir = "GSL-" + self.commit_id
+        tools.get("{0}/archive/v{1}.zip".format(source_url, self.version))
+        extracted_dir = "GSL-" + self.version
         os.rename(extracted_dir, self.source_subfolder)
             
     def package(self):
-        include_folder = os.path.join(self.source_subfolder,"include")
+        include_folder = os.path.join(self.source_subfolder, "include")
         self.copy(pattern="LICENSE", src=self.source_subfolder)
         self.copy(pattern="*", dst="include", src=include_folder)
 
