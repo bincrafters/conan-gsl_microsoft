@@ -7,7 +7,7 @@ import os
 
 class GslMicrosoftConan(ConanFile):
     name = "gsl_microsoft"
-    version = "1.0.0"
+    version = "2.0.0"
     description = "Functions and types that are suggested for use by the C++ Core Guideline"
     url = "https://github.com/bincrafters/conan-gsl_microsoft"
     license = "MIT"
