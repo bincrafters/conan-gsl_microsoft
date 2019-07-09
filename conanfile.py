@@ -15,6 +15,28 @@ class GslMicrosoftConan(ConanFile):
     no_copy_source = True
     _source_subfolder = "source_subfolder"
     
+    
+    #  There are three configuration options for this GSL implementation's behavior
+    #  when pre/post conditions on the GSL types are violated:
+    # 
+    #  1. GSL_TERMINATE_ON_CONTRACT_VIOLATION: std::terminate will be called (default)
+    #  2. GSL_THROW_ON_CONTRACT_VIOLATION: a gsl::fail_fast exception will be thrown
+    #  3. GSL_UNENFORCED_ON_CONTRACT_VIOLATION: nothing happens
+    # 
+    options = {
+        'on_contract_violation': ['terminate', 'throw', 'unenforced']
+    }
+    
+    default_options = {
+        'on_contract_violation': 'terminate',
+    }
+    
+    _contract_map = {
+        'terminate': 'GSL_TERMINATE_ON_CONTRACT_VIOLATION',
+        'throw': 'GSL_THROW_ON_CONTRACT_VIOLATION',
+        'unenforced': 'GSL_UNENFORCED_ON_CONTRACT_VIOLATION'
+    }
+    
     def source(self):
         source_url = "https://github.com/Microsoft/GSL"
         tools.get("{0}/archive/v{1}.zip".format(source_url, self.version))
@@ -28,3 +50,6 @@ class GslMicrosoftConan(ConanFile):
 
     def package_id(self):
         self.info.header_only()
+        
+    def package_info(self):
+        self.cpp_info.defines = [self._contract_map[str(self.options.on_contract_violation)]]
